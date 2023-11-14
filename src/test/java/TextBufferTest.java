@@ -12,4 +12,15 @@ public class TextBufferTest {
         Assertions.assertEquals(expectedText,bu_string);
     }
 
+    @Test
+    public void TextBufferTestMaxP(){
+        TextBuffer bu = new TextBuffer("jem'appellehenryjevoudraisbienreussirmavie");
+        int bu_maxP = bu.maxP();
+
+        int expectInt = bu.toString().length();
+
+        Assertions.assertEquals(expectInt,bu_maxP);
+
+    }
+
 }
