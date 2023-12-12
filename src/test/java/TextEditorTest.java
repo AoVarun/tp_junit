@@ -38,11 +38,11 @@ public class TextEditorTest {
 
 
         TextEditor textEditor = new TextEditor("Test");
-        when(emacsKillRing.currentElt()).thenReturn("Le test");
-        when(textBuffer.maxP()).thenReturn(100);
+        when(mockEmacsKillRing.currentElt()).thenReturn("Le test");
+        when(mockTextBuffer.maxP()).thenReturn(100);
 
         textEditor.yank();
-        verify(emacsKillRing, times(1)).currentElt();
+        verify(mockEmacsKillRing, times(1)).currentElt();
     }
 
     @Test
