@@ -34,7 +34,17 @@ public class TextEditorTest {
     }
 
     @Test
-    public void testYank
+    public void testYankPopAfter() throws IllegalAccessException, EmacsKillRingOverflowException{
+        TextEditor textEditor = new TextEditor("test");
+        textEditor.setMark(0);
+        textEditor.setCursor(5);
+        Mockito.when(emacsKillRing.currentElt()).thenReturn("test");
+
+        textEditor.yank();
+        textEditor.yankPop();
+
+        Mockito.verify(emacsKillRing,Mockito.times(1)).rotateFwd();
+    }
 
 
 
