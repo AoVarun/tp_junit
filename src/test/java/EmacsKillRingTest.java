@@ -1,7 +1,6 @@
 import fr.einfolearning.tp2.metiers.EmacsKillRing;
 import fr.einfolearning.tp2.metiers.TextBuffer;
 import fr.einfolearning.tp2.metiers.exceptions.EmacsKillRingOverflowException;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
