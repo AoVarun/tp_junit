@@ -26,9 +26,15 @@ public class TextEditorTest {
     @Test
     public void testYank() throws IllegalAccessException, EmacsKillRingOverflowException{
         TextEditor textEditor = new TextEditor("Test");
+        Mockito.when(emacsKillRing.currentElt()).thenReturn("Le test");
+        Mockito.when(textBuffer.maxP()).thenReturn(100);
 
-
+        textEditor.yank();
+        Mockito.verify(emacsKillRing, Mockito.times(1)).currentElt();
     }
+
+    @Test
+    public void testYank
 
 
 
