@@ -5,32 +5,44 @@ import fr.einfolearning.tp2.metiers.exceptions.EmacsKillRingOverflowException;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.Mockito.*;
+
+import static org.mockito.Mockito.*;
 
 public class TextEditorTest {
 
-    @Mock
-    public TextBuffer textBuffer;
-    @Mock
-    public EmacsKillRing emacsKillRing;
-
     @Test
     public void testYankPop() throws IllegalAccessException, EmacsKillRingOverflowException {
+            EmacsKillRing mockEmacsKillRing = mock(EmacsKillRing.class);
+
             TextEditor text = new TextEditor("test");
             text.setMark(0);
-            text.setCursor(0);
+            text.setCursor(5);
+            text.emacsKillRing = mockEmacsKillRing;
+
             text.yank();
-            Mockito.when(emacsKillRing.currentElt()).thenReturn("test");
+            when(mockEmacsKillRing.currentElt()).thenReturn("test");
+
+            text.emacsKillRing = mockEmacsKillRing;
+
+            text.yankPop();
+
+            verify(mockEmacsKillRing,times(1)).rotateFwd();
 
     }
 
     @Test
     public void testYank() throws IllegalAccessException, EmacsKillRingOverflowException{
+        EmacsKillRing mockEmacsKillRing = mock(EmacsKillRing.class);
+        TextBuffer mockTextBuffer = mock(TextBuffer.class);
+
+
         TextEditor textEditor = new TextEditor("Test");
-        Mockito.when(emacsKillRing.currentElt()).thenReturn("Le test");
-        Mockito.when(textBuffer.maxP()).thenReturn(100);
+        when(emacsKillRing.currentElt()).thenReturn("Le test");
+        when(textBuffer.maxP()).thenReturn(100);
 
         textEditor.yank();
-        Mockito.verify(emacsKillRing, Mockito.times(1)).currentElt();
+        verify(emacsKillRing, times(1)).currentElt();
     }
 
     @Test
@@ -38,12 +50,12 @@ public class TextEditorTest {
         TextEditor textEditor = new TextEditor("test");
         textEditor.setMark(0);
         textEditor.setCursor(5);
-        Mockito.when(emacsKillRing.currentElt()).thenReturn("test");
+        when(emacsKillRing.currentElt()).thenReturn("test");
 
         textEditor.yank();
         textEditor.yankPop();
 
-        Mockito.verify(emacsKillRing,Mockito.times(1)).rotateFwd();
+        verify(emacsKillRing, times(1)).rotateFwd();
     }
 
 

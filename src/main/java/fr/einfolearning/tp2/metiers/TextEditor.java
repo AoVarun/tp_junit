@@ -10,6 +10,7 @@ import java.lang.IllegalAccessException;
  */
 public class TextEditor {
 
+    public EmacsKillRing emacsKillRing;
     private TextBuffer buffer;     // text buffer
     private EmacsKillRing emacsKillring; // killring
     private int cursor, mark;   // cursor and mark position
